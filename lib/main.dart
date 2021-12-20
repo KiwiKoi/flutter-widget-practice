@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:les_widgets_basiques/main_title_text.dart';
+import 'package:les_widgets_basiques/section_title.dart';
+import 'post.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,13 +30,51 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const BasicsPage(),
+      home: BasicsPage(),
     );
   }
 }
 
 class BasicsPage extends StatelessWidget {
-  const BasicsPage({Key? key}) : super(key: key);
+
+  final List<Post> posts = [
+    Post(
+      name: "Daniel V",
+      time: "5 minutes",
+      imagePath: "images/mountain.jpg",
+      likes: 20,
+      comments: 100,
+      desc:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ),
+    Post(
+      name: "José G",
+      time: "2 minutes",
+      imagePath: "images/beach.jpg",
+      likes: 5,
+      comments: 15,
+      desc:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ),
+    Post(
+      name: "Vincent D",
+      time: "2 minutes",
+      imagePath: "images/beach.jpg",
+      likes: 5,
+      comments: 15,
+      desc:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ),
+    Post(
+      name: "Yann L",
+      time: "6 minutes",
+      imagePath: "images/beach.jpg",
+      likes: 5,
+      comments: 15,
+      desc:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +87,6 @@ class BasicsPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
           child: Column(
-        // mainAxisSize: MainAxisSize.max,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(alignment: Alignment.topCenter, children: [
@@ -57,14 +96,11 @@ class BasicsPage extends StatelessWidget {
               child: profilePicture(radius: 70),
             ),
           ]),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+          Row(
             children: [
-              titleText(
-                "Daniel Visage",
-              ),
-              subText("Bla blab lab lablabla blablab albala. Bla blabla.")
+              Spacer(),
+              MainTitleText(data: "Daniel V"),
+              Spacer()
             ],
           ),
           Container(
@@ -75,14 +111,6 @@ class BasicsPage extends StatelessWidget {
                 iconButton(),
               ])),
           const Divider(thickness: 2.0),
-          /*Container(
-              margin: const EdgeInsets.all(10),
-              height: 200,
-              width: size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [friendsSection()],
-              )),*/
           allFriends(width / 4),
           const Divider(thickness: 2.0),
           Container(
@@ -90,10 +118,8 @@ class BasicsPage extends StatelessWidget {
             child: aboutMe(),
           ),
           const Divider(thickness: 2.0),
-          sectionTitle("My Posts"),
-          post(time: "5 minutes", image: "images/mountain.jpg", likes: 2, comments: 3, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", ),
-          post(time: "5 minutes", image: "images/mountain.jpg", likes: 40, comments: 10, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", ),
-          post(time: "5 minutes", image: "images/mountain.jpg", likes: 10, comments: 0, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", )
+          SectionTitle("My Posts"),
+          allPosts(),
         ],
       )),
     );
@@ -141,7 +167,7 @@ class BasicsPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        sectionTitle("About me"),
+        SectionTitle("About me"),
         aboutMeLine("home", Icons.home),
         aboutMeLine("work", Icons.work),
         aboutMeLine("relationship", Icons.favorite),
@@ -192,39 +218,6 @@ class BasicsPage extends StatelessWidget {
         ));
   }
 
-  Widget sectionTitle(String text) {
-    return Container(
-        padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-        child: Text(text,
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-            )));
-  }
-
-  Container friendsSection() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-      child: Column(
-        children: [
-          sectionTitle("Friends"),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              friendCard(),
-              const SizedBox(width: 20),
-              friendCard(),
-              const SizedBox(width: 20),
-              friendCard(),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
   Column friendsImage(String name, String imagePath, double width) {
     return Column(children: [
       Container(
@@ -237,7 +230,7 @@ class BasicsPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             boxShadow: const [BoxShadow(color: Colors.grey)],
             color: Colors.blue,
-          ))
+          )),
     ]);
   }
 
@@ -286,49 +279,65 @@ class BasicsPage extends StatelessWidget {
     );
   }
 
-  Container post(
-      {required String time, required String image, required String desc, required num likes, required num comments }) {
-    return Container(
-        margin: const EdgeInsets.only(top: 8, left: 3, right: 3),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color.fromRGBO(225, 225, 225, 1)),
-    child: Column(
-      children: [
-        Row(children: [
-          profilePicture(radius: 20),
-          const Padding(padding: EdgeInsets.only(left:8),),
-          const Text("Daniel V"),
-          const Spacer(),
-          timeText(time)
-        ],
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 8, bottom: 8),
-          child: Image.asset(image, fit: BoxFit.cover),
-        ),
-        Text(desc, style: const TextStyle(
-          color: Colors.blueGrey
-        ),
-        textAlign: TextAlign.center,),
-        Divider(),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Icon(Icons.favorite),
-            Text("$likes Likes"),
-            Icon(Icons.message),
-            Text("$comments comments")
-          ],
-        )
-      ],
-    ),
+  Column allPosts() {
+    List<Widget> postToAdd = [];
+    posts.forEach((element) {
+      postToAdd.add(post(post: element));
+    });
+    return Column(
+      children: postToAdd,
     );
   }
 
-  Text timeText(String time){
-    return Text("$time ago", style: const TextStyle(color: Colors.blue),);
+  Container post({required Post post}) {
+    return Container(
+      margin: const EdgeInsets.only(top: 8, left: 3, right: 3),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color.fromRGBO(225, 225, 225, 1)),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              profilePicture(radius: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 8),
+              ),
+              Text(post.name),
+              const Spacer(),
+              timeText(post.setTime())
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 8, bottom: 8),
+            child: Image.asset(post.imagePath, fit: BoxFit.cover),
+          ),
+          Text(
+            post.desc,
+            style: const TextStyle(color: Colors.blueGrey),
+            textAlign: TextAlign.center,
+          ),
+          Divider(),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Icon(Icons.favorite),
+              Text(post.setLikes()),
+              Icon(Icons.message),
+              Text(post.setComments())
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Text timeText(String time) {
+    return Text(
+      "$time ago",
+      style: const TextStyle(color: Colors.blue),
+    );
   }
 }
